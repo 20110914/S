@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网页内容显示器</title>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* 隐藏任何可能的滚动条 */
+    }
+    iframe {
+        width: 100vw; /* 视口宽度 */
+        height: 100vh; /* 视口高度 */
+        border: none; /* 移除iframe边框 */
+        position: fixed; /* 固定位置，防止滚动 */
+        top: 0;
+        left: 0;
+    }
+</style>
+<script>
+window.onload = function() {
+    // 获取URL中的参数
+    var urlParam = new URLSearchParams(window.location.search).get('url');
+    
+    // 检查是否有url参数
+    if (urlParam) {
+        // 设置iframe的src属性为url参数的值
+        document.getElementById('contentFrame').src = urlParam;
+    } else {
+        // 如果没有url参数，可以设置一个默认页面或者显示错误信息
+        document.getElementById('contentFrame').src = '404.html'; // 假设你有一个404.html作为默认页面
+        // 或者显示错误信息
+        alert('请提供一个url参数！');
+    }
+};
+</script>
+</head>
+<body>
+
+<!-- iframe用于加载并显示目标网页 -->
+<iframe id="contentFrame"></iframe>
+
+</body>
+</html>
